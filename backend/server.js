@@ -15,12 +15,7 @@ app.use(express.json());
 // Database connection
 const connectDB = require('./config/db');
 connectDB();
-app.use(express.static(path.join(__dirname, 'public')));
 
-// All other routes return React app
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
 // Routes
 app.use('/api/calls', require('./routes/calls'));
 
