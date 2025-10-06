@@ -15,7 +15,6 @@ app.use(express.json());
 // Database connection
 const connectDB = require('./config/db');
 connectDB();
-const path = require('path');
 
 // Serve static files from React build
 app.use(express.static(path.join(__dirname, 'public')));
