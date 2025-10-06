@@ -16,19 +16,16 @@ app.use(express.json());
 const connectDB = require('./config/db');
 connectDB();
 
-// Routes
+// API Routes FIRST - Very Important!
 app.use('/api/calls', require('./routes/calls'));
 
-// Serve static files from React build
+// Serve static files SECOND
 app.use(express.static(path.join(__dirname, 'public')));
 
-// All other routes return React app
-// Recommended for Express 5 + path-to-regexp 8
-app.get('/:any(.*)', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+// Catch-all route LAST
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
-
-
 
 const PORT = process.env.PORT || 5000;
 
